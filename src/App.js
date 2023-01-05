@@ -10,13 +10,13 @@ function App() {
     setRandomColor(genRanCol());
 
     // listen for keypresses
-    document.addEventListener('keypress', e => {
+    document.addEventListener('keyup', e => {
       setRandomColor(genRanCol());
     });
 
     return () => {
       // cleanup
-      document.removeEventListener('keypress', e => {
+      document.removeEventListener('keyup', e => {
         setRandomColor(genRanCol());
       });
     };
