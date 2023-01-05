@@ -7,6 +7,8 @@ function App() {
   const genRanCol = () => Math.floor(Math.random() * 16777215).toString(16);
 
   useEffect(() => {
+    setRandomColor(genRanCol());
+
     // listen for keypresses
     document.addEventListener('keypress', e => {
       setRandomColor(genRanCol());
