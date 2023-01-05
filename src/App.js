@@ -1,22 +1,32 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
+  const [randomColor, setRandomColor] = useState('');
+
+  const genRanCol = () => Math.floor(Math.random() * 16777215).toString(16);
+
+  useEffect(() => {
+    // listen for keypresses
+    document.addEventListener('keypress', e => {
+      setRandomColor(genRanCol());
+    });
+
+    return () => {
+      // cleanup
+      document.removeEventListener('keypress', e => {
+        setRandomColor(genRanCol());
+      });
+    };
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className='App'>
+      <header
+        className='App-header'
+        style={{ backgroundColor: `#${randomColor}` }}
+      >
+        <p>Ezra Lee Castro</p>
       </header>
     </div>
   );
